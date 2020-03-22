@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  desktop:
+    image: gautaz/desktop
+    build:
+      context: ./build
+      args:
+        USERID: ${USERID}
+        GROUPID: ${GROUPID}
+        USERLOGIN: ${USERLOGIN}
+    volumes:
+      - ${HOME}:${HOME}/host
+    ports:
+      - "127.0.0.1:5900:5900/tcp"

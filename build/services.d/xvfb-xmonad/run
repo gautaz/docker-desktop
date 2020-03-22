@@ -1,0 +1,9 @@
+#!/usr/bin/execlineb -P
+with-contenv
+importas -i userlogin USERLOGIN
+define nixbin "/nix/var/nix/profiles/default/bin"
+cd /home/user
+s6-setuidgid "${userlogin}"
+s6-envuidgid -B -i "${userlogin}:${userlogin}"
+fdmove -c 2 1
+"${nixbin}/xvfb-run" --server-num=0 --server-args="-screen 0 1920x1080x24" "${nixbin}/xmonad"
