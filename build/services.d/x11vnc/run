@@ -1,8 +1,8 @@
 #!/usr/bin/execlineb -P
 with-contenv
+importas -i nixbin NIXBIN
 importas -i userlogin USERLOGIN
 importas -D "x11vnc" vncpasswd VNCPASSWD
-define nixbin "/nix/var/nix/profiles/default/bin"
 s6-setuidgid "${userlogin}"
 fdmove -c 2 1
 "${nixbin}/x11vnc" -display :0 -noxrecord -noxfixes -noxdamage -forever -passwd "${vncpasswd}"
