@@ -10,11 +10,12 @@ ARG USERID=0
 ARG GROUPID=0
 ARG USERLOGIN=user
 
+ENV USERID="${USERID}"
+ENV GROUPID="${GROUPID}"
 ENV USERLOGIN="${USERLOGIN}"
 ENV NIXBIN="/home/user/.nix-profile/bin"
 RUN --mount=type=bind,from=tmp,source=/tmp,target=/mnt \
-    apk update && apk add bash && \
-    /mnt/set-user.sh "${USERID}" "${GROUPID}" "${USERLOGIN}" && \
+    /mnt/set-user.sh && \
     adduser "${USERLOGIN}" nixbld && \
     nixvar="/nix/var" && \
     chgrp -R "${GROUPID}" "${nixvar}" && \
@@ -27,6 +28,7 @@ ENV USER="${USERLOGIN}"
 WORKDIR /home/user
 RUN source /etc/profile.d/nix.sh && nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
     nix-env --install --attr \
+        nixpkgs.bash \
         nixpkgs.man \
         nixpkgs.xvfb_run \
         nixpkgs.x11vnc \
