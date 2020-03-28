@@ -29,11 +29,12 @@ WORKDIR /home/user
 RUN source /etc/profile.d/nix.sh && nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
     nix-env --install --attr \
         nixpkgs.bash \
-        nixpkgs.man \
-        nixpkgs.xvfb_run \
-        nixpkgs.x11vnc \
         nixpkgs.haskellPackages.xmonad \
+        nixpkgs.man \
+        nixpkgs.nix \
+        nixpkgs.x11vnc \
         nixpkgs.xterm \
+        nixpkgs.xvfb_run \
     && \
     nix-collect-garbage
 
