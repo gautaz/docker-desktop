@@ -1,7 +1,6 @@
 #!/usr/bin/execlineb -P
 with-contenv
 importas -i nixbin NIXBIN
-importas -i path PATH
 importas -i userlogin USERLOGIN
 cd /home/user
 s6-setuidgid "${userlogin}"
