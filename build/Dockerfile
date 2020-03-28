@@ -15,6 +15,7 @@ ENV GROUPID="${GROUPID}"
 ENV USERLOGIN="${USERLOGIN}"
 ENV NIXBIN="/home/user/.nix-profile/bin"
 RUN --mount=type=bind,from=tmp,source=/tmp,target=/mnt \
+    echo "${NIXBIN}/bash" >> /etc/shells && \
     /mnt/set-user.sh && \
     adduser "${USERLOGIN}" nixbld && \
     nixvar="/nix/var" && \
@@ -30,7 +31,7 @@ RUN source /etc/profile.d/nix.sh && \
     ln -s /dev/null /home/user/.nix-defexpr/channels && \
     nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
     nix-env --install --attr $(echo "\
-        bash \
+        bashInteractive_5 \
         haskellPackages.xmonad \
         man \
         nix \
