@@ -26,7 +26,9 @@ USER ${USERLOGIN}
 ENV HOME="/home/user"
 ENV USER="${USERLOGIN}"
 WORKDIR /home/user
-RUN source /etc/profile.d/nix.sh && nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
+RUN source /etc/profile.d/nix.sh && \
+    ln -s /dev/null /home/user/.nix-defexpr/channels && \
+    nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
     nix-env --install --attr \
         nixpkgs.bash \
         nixpkgs.haskellPackages.xmonad \
