@@ -34,6 +34,8 @@ RUN source /etc/profile.d/nix.sh && \
         haskellPackages.xmonad \
         man \
         nix \
+        powerline-go \
+        screen \
         x11vnc \
         xterm \
         xvfb_run \
