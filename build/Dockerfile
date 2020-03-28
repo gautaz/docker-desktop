@@ -29,15 +29,15 @@ WORKDIR /home/user
 RUN source /etc/profile.d/nix.sh && \
     ln -s /dev/null /home/user/.nix-defexpr/channels && \
     nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
-    nix-env --install --attr \
-        nixpkgs.bash \
-        nixpkgs.haskellPackages.xmonad \
-        nixpkgs.man \
-        nixpkgs.nix \
-        nixpkgs.x11vnc \
-        nixpkgs.xterm \
-        nixpkgs.xvfb_run \
-    && \
+    nix-env --install --attr $(echo "\
+        bash \
+        haskellPackages.xmonad \
+        man \
+        nix \
+        x11vnc \
+        xterm \
+        xvfb_run \
+    " | tr -s ' ' '\n' | sed '/^$/d;s/\(.*\)/nixpkgs.\1/' | tr '\n' ' ') && \
     nix-collect-garbage
 
 USER root
