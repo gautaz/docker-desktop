@@ -36,6 +36,7 @@ RUN source /etc/profile.d/nix.sh && \
         haskellPackages.xmonad \
         man \
         nix \
+        powerline-fonts \
         powerline-go \
         screen \
         x11vnc \
@@ -43,6 +44,7 @@ RUN source /etc/profile.d/nix.sh && \
         xvfb_run \
     " | tr -s ' ' '\n' | sed '/^$/d;s/\(.*\)/nixpkgs.\1/' | tr '\n' ' ') && \
     nix-collect-garbage
+COPY --chown="${USERID}:${GROUPID}" dotfiles /home/user
 
 USER root
 ENV HOME="/root"
