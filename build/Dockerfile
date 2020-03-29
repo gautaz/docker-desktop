@@ -32,6 +32,7 @@ RUN source /etc/profile.d/nix.sh && \
     nix-env --switch-profile "/nix/var/nix/profiles/per-user/${USERLOGIN}/profile" && \
     nix-env --install --attr $(echo "\
         bashInteractive_5 \
+        gitAndTools.gitFull \
         haskellPackages.xmonad \
         man \
         nix \
