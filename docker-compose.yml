@@ -8,7 +8,8 @@ services:
         USERID: ${USERID}
         GROUPID: ${GROUPID}
         USERLOGIN: ${USERLOGIN}
+      # target: xorgxrdp
     volumes:
       - ${HOME}:/home/user/host
     ports:
-      - "127.0.0.1:5900:5900/tcp"
+      - "127.0.0.1:3389:3389/tcp"
