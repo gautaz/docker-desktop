@@ -8,7 +8,14 @@ services:
         USERID: ${USERID}
         GROUPID: ${GROUPID}
         USERLOGIN: ${USERLOGIN}
+        PASSWORD: ${PASSWORD}
+        TIMEZONE: ${TIMEZONE}
+        I3THEME: ${I3THEME}
+    privileged: true
+    shm_size: "2G"
+    environment:
+        TZ: ${TIMEZONE}
     volumes:
-      - ${HOME}:/home/user/host
+      - ${HOME}:/home/${USERLOGIN}/host
     ports:
       - "127.0.0.1:3389:3389/tcp"
