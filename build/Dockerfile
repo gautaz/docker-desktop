@@ -31,6 +31,7 @@ RUN \
     apk add \
         bash \
         dbus \
+        dmenu dmenu-doc \
         eudev \
         git git-bash-completion git-lfs \
         i3status i3wm \
