@@ -33,6 +33,7 @@ RUN \
         dbus \
         dmenu dmenu-doc \
         eudev \
+        font-xfree86-type1 \
         git git-bash-completion git-lfs \
         i3status i3wm i3wm-doc \
         man man-pages \
