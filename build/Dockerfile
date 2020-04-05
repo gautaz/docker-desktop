@@ -6,7 +6,7 @@ RUN \
         @emain http://dl-cdn.alpinelinux.org/alpine/edge/main \n\
         @ecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community \n\
         @etesting http://dl-cdn.alpinelinux.org/alpine/edge/testing \n\
-    " | awk '{print $1" "$2}' >> /etc/apk/repositories && \
+    " | awk '{print $1" "$2}' | sed '/^[[:space:]]*$/d' >> /etc/apk/repositories && \
     apk update
 
 FROM busybox as local
