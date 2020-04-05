@@ -34,7 +34,7 @@ RUN \
         dmenu dmenu-doc \
         eudev \
         git git-bash-completion git-lfs \
-        i3status i3wm \
+        i3status i3wm i3wm-doc \
         man man-pages \
         powerline-extra-symbols@etesting \
         sudo \
