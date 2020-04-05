@@ -30,6 +30,7 @@ RUN \
     \
     apk add \
         bash \
+        dbus \
         eudev \
         git git-bash-completion git-lfs \
         i3status i3wm \
@@ -42,7 +43,7 @@ RUN \
         xrdp@ecommunity xorgxrdp@etesting \
         xterm \
     && \
-    echo "exec /usr/bin/i3" > /etc/X11/xinit/xinitrc.d/i3 && \
+    echo "exec /usr/bin/dbus-run-session -- /usr/bin/i3" > /etc/X11/xinit/xinitrc.d/i3 && \
     chmod a+x /etc/X11/xinit/xinitrc.d/i3 && \
     xrdp-keygen xrdp auto && \
     cp -a /mnt/powerline/powerline-go /usr/local/bin/ && \
