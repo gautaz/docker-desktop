@@ -39,11 +39,13 @@ RUN \
         git git-bash-completion git-lfs \
         i3status i3wm i3wm-doc \
         man man-pages \
+        mesa-dri-swrast \
         sudo \
         ttf-freefont \
         tzdata \
-        xorg-server@emain mesa-dri-swrast \
-        xrdp@ecommunity xorgxrdp@etesting \
+        xorg-server@emain \
+        xorgxrdp@etesting \
+        xrdp@ecommunity \
         xterm \
     && \
     echo "exec /usr/bin/dbus-run-session -- /usr/bin/i3" > /etc/X11/xinit/xinitrc.d/i3 && \
