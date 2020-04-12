@@ -34,10 +34,10 @@ RUN \
         dmenu dmenu-doc \
         eudev \
         font-xfree86-type1 \
+        font-inconsolata-nerd@ecommunity \
         git git-bash-completion git-lfs \
         i3status i3wm i3wm-doc \
         man man-pages \
-        powerline-extra-symbols@etesting \
         sudo \
         ttf-freefont \
         tzdata \
