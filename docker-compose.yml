@@ -7,6 +7,9 @@ services:
       args:
         USERID: ${USERID}
         GROUPID: ${GROUPID}
+        AUDIOID: ${AUDIOID}
+        VIDEOID: ${VIDEOID}
+        DOCKERID: ${DOCKERID}
         USERLOGIN: ${USERLOGIN}
         PASSWORD: ${PASSWORD}
         TIMEZONE: ${TIMEZONE}

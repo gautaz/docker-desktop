@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 set -e
 
+getGroupID() {
+	echo "$(getent group $1 | cut -d: -f3)"
+}
+
 case "${OSTYPE}" in
 	darwin*)
 		echo "Using Darwin settings"
@@ -11,6 +15,9 @@ case "${OSTYPE}" in
 		echo "Using common settings"
 		USERID="$(id -u)"
 		GROUPID="$(id -g)"
+		AUDIOID="$(getGroupID audio)"
+		VIDEOID="$(getGroupID video)"
+		DOCKERID="$(getGroupID docker)"
 		;;
 esac
 
@@ -20,6 +27,9 @@ if [ ! -e .env ]; then
 	cat > .env <<- EOE
 		USERID=${USERID}
 		GROUPID=${GROUPID}
+		AUDIOID=${AUDIOID}
+		VIDEOID=${VIDEOID}
+		DOCKERID=${DOCKERID}
 		USERLOGIN=${LOGNAME}
 		PASSWORD=$(mkpasswd --method=SHA-512 --stdin)
 		TIMEZONE=${TZ:-$(wget -O - -q http://geoip.ubuntu.com/lookup | sed 's#.*<TimeZone>\(.*\)</TimeZone>.*#\1#')}
