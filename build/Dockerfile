@@ -25,6 +25,7 @@ RUN go get -u github.com/justjanne/powerline-go
 
 FROM base
 RUN \
+    --mount=type=tmpfs,target=/mnt \
     --mount=type=bind,from=powerline,source=/root/go/bin,target=/mnt/powerline \
     --mount=type=bind,from=s6,source=/tmp,target=/mnt/s6 \
     \
@@ -64,6 +65,7 @@ ENV PASSWORD="${PASSWORD}"
 ENV TIMEZONE="${TIMEZONE}"
 COPY --chown="${USERID}:${GROUPID}" ["dotfiles", "/home/${USERLOGIN}"]
 RUN \
+    --mount=type=tmpfs,target=/mnt \
     --mount=type=bind,from=local,source=/tmp,target=/mnt/local \
     --mount=type=bind,from=i3theme,source=/tmp,target=/mnt/i3theme \
     \
