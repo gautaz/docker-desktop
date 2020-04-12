@@ -16,6 +16,7 @@ services:
     environment:
         TZ: ${TIMEZONE}
     volumes:
+      - /var/run/acpid.socket:/var/run/acpid.socket
       - ${HOME}:/home/${USERLOGIN}/host
     ports:
       - "127.0.0.1:3389:3389/tcp"
