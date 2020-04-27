@@ -1,6 +1,17 @@
 version: "3.7"
 
 services:
+  code.local:
+    build:
+      context: ./build
+      args:
+        USERID: ${USERID}
+        GROUPID: ${GROUPID}
+        USERLOGIN: ${USERLOGIN}
+      target: code
+    volumes:
+      - ${HOME}:/home/${USERLOGIN}/host
+
   desktop:
     build:
       context: ./build
