@@ -15,6 +15,7 @@ services:
         TIMEZONE: ${TIMEZONE}
         I3THEME: ${I3THEME}
     privileged: true
+    # https://stackoverflow.com/questions/56218242/headless-chromium-on-docker-fails
     shm_size: "2G"
     environment:
         TZ: ${TIMEZONE}
