@@ -1,12 +1,8 @@
 # syntax=docker/dockerfile:experimental
 
-FROM alpine:3.11 as base
+FROM alpine:edge as base
 RUN \
-    echo -e " \
-        @emain http://dl-cdn.alpinelinux.org/alpine/edge/main \n\
-        @ecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community \n\
-        @etesting http://dl-cdn.alpinelinux.org/alpine/edge/testing \n\
-    " | awk '{print $1" "$2}' | sed '/^[[:space:]]*$/d' >> /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk update
 
 FROM busybox as local
@@ -35,17 +31,17 @@ RUN \
         dmenu dmenu-doc \
         eudev \
         font-xfree86-type1 \
-        font-inconsolata-nerd@ecommunity \
+        font-inconsolata-nerd \
         git git-bash-completion git-lfs \
         i3status i3wm i3wm-doc \
-        man man-pages \
+        mdocml man-pages \
         mesa-dri-swrast \
         sudo \
         ttf-freefont \
         tzdata \
-        xorg-server@emain \
-        xorgxrdp@etesting \
-        xrdp@ecommunity \
+        xorg-server \
+        xorgxrdp \
+        xrdp \
         xterm \
     && \
     echo "exec /usr/bin/dbus-run-session -- /usr/bin/i3" > /etc/X11/xinit/xinitrc.d/i3 && \
