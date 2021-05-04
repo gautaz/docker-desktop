@@ -109,18 +109,15 @@ RUN \
         git git-bash-completion git-lfs \
         i3status i3wm i3wm-doc \
         mdocml man-pages \
-        mesa-dri-swrast \
         sudo \
         ttf-freefont \
         tzdata \
-        xorg-server \
-        xorgxrdp \
-        xrdp \
+        xspice \
         xterm \
     && \
+    mkdir -p /etc/X11/xinit/xinitrc.d && \
     echo "exec /usr/bin/dbus-run-session -- /usr/bin/i3" > /etc/X11/xinit/xinitrc.d/i3 && \
     chmod a+x /etc/X11/xinit/xinitrc.d/i3 && \
-    xrdp-keygen xrdp auto && \
     cp -a /mnt/powerline/powerline-go /usr/local/bin/ && \
     gunzip -c /mnt/s6/s6-overlay-amd64.tar.gz | tar -xf - -C / && \
     cp /mnt/pki/ca/root-ca.crt /usr/local/share/ca-certificates/ca-local.pem && \
@@ -149,6 +146,7 @@ RUN \
     --mount=type=bind,from=local,source=/tmp,target=/mnt/local \
     --mount=type=bind,from=i3theme,source=/tmp,target=/mnt/i3theme \
     \
-    echo "TZ=${TIMEZONE}" >> /etc/xrdp/sesman.ini && \
     cat /mnt/i3theme/config >> "/home/${USERLOGIN}/.config/i3/config" && \
     /mnt/local/add-user.sh
+
+    # echo "TZ=${TIMEZONE}" >> /etc/xrdp/sesman.ini && \
